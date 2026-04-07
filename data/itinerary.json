@@ -17,7 +17,8 @@
           "detail": "- 启程前往波特兰，建议提前确认为期 9 天的跨国异地还车合同\n- 4 个成年人建议租用全尺寸 SUV (如 Chevrolet Suburban) 以保证行李空间",
           "lat": 40.0799,
           "lng": 116.6031,
-          "mode": "flight"
+          "mode": "flight",
+          "showOnMap": false
         }
       ]
     },
@@ -242,6 +243,17 @@
           "lat": 49.1967,
           "lng": -123.1815,
           "mode": "flight"
+        },
+        {
+          "id": "2026-04-28-01",
+          "time": "12:20",
+          "place": "北京首都机场 (PEK) 抵达",
+          "detailType": "旅途",
+          "detail": "- 跨越时区，抵达日期通常为次日（以机票为准）\n- 注意北京时间与当地日期变化，安排接机与休息",
+          "lat": 40.0799,
+          "lng": 116.6031,
+          "mode": "flight",
+          "showOnMap": false
         }
       ]
     }

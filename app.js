@@ -1,14 +1,17 @@
 const timelineEl = document.getElementById("timeline");
 const summaryEl = document.getElementById("summary");
 const mapFooterEl = document.getElementById("mapFooter");
+const pageTitleEl = document.getElementById("pageTitle");
+const pageSubEl = document.getElementById("pageSub");
 
 let map;
 const markers = new Map();
 const listItems = new Map();
-const labelMarkers = [];
+const labelMarkers = new Map();
 const arrowMarkers = [];
 let routeLine;
 let globalBounds = [];
+let orderedItems = [];
 
 const modeColors = {
   flight: "#c64a2f",
@@ -44,6 +47,16 @@ function syncMainHeight() {
 function renderSummary(data) {
   const totalItems = data.days.reduce((sum, day) => sum + day.items.length, 0);
   summaryEl.textContent = `${data.title} · ${data.days.length} 天 · ${totalItems} 个行程点`;
+  if (pageTitleEl) {
+    pageTitleEl.textContent = data.title || "行程标题";
+  }
+  if (pageSubEl) {
+    const rangeText = data.range?.start && data.range?.end ? `${data.range.start} 至 ${data.range.end}` : "日期范围";
+    pageSubEl.textContent = rangeText;
+  }
+  if (data.title) {
+    document.title = data.title;
+  }
 }
 
 function renderTimeline(days) {
@@ -67,6 +80,20 @@ function renderTimeline(days) {
       const headEl = document.createElement("div");
       headEl.className = "item-head";
 
+      const toggleLabel = document.createElement("label");
+      toggleLabel.className = "toggle";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = item.showOnMap !== false;
+      checkbox.dataset.itemId = item.id;
+
+      const toggleText = document.createElement("span");
+      toggleText.textContent = "地图";
+
+      toggleLabel.appendChild(checkbox);
+      toggleLabel.appendChild(toggleText);
+
       const timeEl = document.createElement("div");
       timeEl.className = "item-time";
       timeEl.textContent = item.time;
@@ -75,6 +102,7 @@ function renderTimeline(days) {
       tagEl.className = "item-tag";
       tagEl.textContent = formatTag(item);
 
+      headEl.appendChild(toggleLabel);
       headEl.appendChild(timeEl);
       headEl.appendChild(tagEl);
 
@@ -91,6 +119,10 @@ function renderTimeline(days) {
       itemEl.appendChild(detailEl);
 
       itemEl.addEventListener("click", () => focusItem(item.id));
+      checkbox.addEventListener("click", (event) => event.stopPropagation());
+      checkbox.addEventListener("change", (event) => {
+        setItemVisibility(item.id, event.target.checked);
+      });
 
       listItems.set(item.id, itemEl);
       dayEl.appendChild(itemEl);
@@ -109,35 +141,41 @@ function initMap(days) {
   }).addTo(map);
 
   const bounds = [];
-  const orderedItems = [];
+  orderedItems = [];
 
-  days.forEach((day) => {
+  days.forEach((day, dayIndex) => {
     day.items.forEach((item) => {
+      const meta = { ...item, dayIndex: dayIndex + 1, date: day.date };
       const color = modeColors[item.mode] || modeColors.walk;
-      const marker = L.circleMarker([item.lat, item.lng], {
+      const marker = L.circleMarker([meta.lat, meta.lng], {
         radius: 8,
         color,
         fillColor: color,
         fillOpacity: 0.85,
       }).addTo(map);
 
-      marker.bindPopup(renderPopup(item), { maxWidth: 240 });
-      marker.on("click", () => focusItem(item.id));
+      marker.bindPopup(renderPopup(meta), { maxWidth: 260 });
+      marker.on("click", () => focusItem(meta.id));
 
-      markers.set(item.id, marker);
-      bounds.push([item.lat, item.lng]);
-      orderedItems.push(item);
+      markers.set(meta.id, marker);
+      bounds.push([meta.lat, meta.lng]);
+      orderedItems.push(meta);
 
-      const label = L.marker([item.lat, item.lng], {
+      const label = L.marker([meta.lat, meta.lng], {
         icon: L.divIcon({
           className: "pin-label",
-          html: `<div>${item.time} · ${escapeHtml(item.place)}</div>`,
-          iconSize: [140, 28],
+          html: `<div>${meta.date} · D${meta.dayIndex} · ${meta.time} · ${escapeHtml(meta.place)}</div>`,
+          iconSize: [240, 28],
           iconAnchor: [-4, 14],
         }),
         interactive: false,
       }).addTo(map);
-      labelMarkers.push(label);
+      labelMarkers.set(meta.id, label);
+
+      if (meta.showOnMap === false) {
+        map.removeLayer(marker);
+        map.removeLayer(label);
+      }
     });
   });
 
@@ -146,31 +184,7 @@ function initMap(days) {
     map.fitBounds(bounds, { padding: [30, 30] });
   }
 
-  if (orderedItems.length > 1) {
-    const latlngs = orderedItems.map((item) => [item.lat, item.lng]);
-    routeLine = L.polyline(latlngs, {
-      color: "#1c6e8c",
-      weight: 3,
-      opacity: 0.7,
-    }).addTo(map);
-
-    for (let i = 0; i < latlngs.length - 1; i += 1) {
-      const start = latlngs[i];
-      const end = latlngs[i + 1];
-      const mid = [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2];
-      const angle = bearing(start[0], start[1], end[0], end[1]);
-      const arrow = L.marker(mid, {
-        icon: L.divIcon({
-          className: "arrow-icon",
-          html: `<div style="transform: rotate(${angle}deg);">➤</div>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8],
-        }),
-        interactive: false,
-      }).addTo(map);
-      arrowMarkers.push(arrow);
-    }
-  }
+  rebuildRoute();
 }
 
 const resetBtn = document.getElementById("resetView");
@@ -181,6 +195,7 @@ if (resetBtn) {
       map.fitBounds(globalBounds, { padding: [30, 30] });
     }
     mapFooterEl.textContent = "点击列表或地图点位查看详情";
+    rebuildRoute();
   });
 }
 
@@ -216,7 +231,7 @@ function formatTag(item) {
 function renderPopup(item) {
   return `
     <div>
-      <strong>${item.time} · ${item.place}</strong>
+      <strong>${item.date} · D${item.dayIndex} · ${item.time} · ${item.place}</strong>
       <div style="margin-top:6px;font-size:12px;color:#6e6a65;">${item.detailType} · ${formatTransit(item)}</div>
       <div style="margin-top:8px;font-size:12px;color:#333;">${markdownToHtml(item.detail)}</div>
     </div>
@@ -270,6 +285,74 @@ function escapeHtml(text) {
     .replace(/>/g, "&gt;")
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function setItemVisibility(itemId, visible) {
+  const marker = markers.get(itemId);
+  const label = labelMarkers.get(itemId);
+  if (marker) {
+    if (visible) {
+      marker.addTo(map);
+    } else {
+      map.removeLayer(marker);
+    }
+  }
+  if (label) {
+    if (visible) {
+      label.addTo(map);
+    } else {
+      map.removeLayer(label);
+    }
+  }
+  rebuildRoute();
+}
+
+function rebuildRoute() {
+  if (routeLine) {
+    map.removeLayer(routeLine);
+    routeLine = null;
+  }
+  arrowMarkers.forEach((arrow) => map.removeLayer(arrow));
+  arrowMarkers.length = 0;
+
+  const visibleItems = orderedItems.filter((item) => {
+    const marker = markers.get(item.id);
+    return marker && map.hasLayer(marker);
+  });
+
+  if (visibleItems.length > 1) {
+    const latlngs = visibleItems.map((item) => [item.lat, item.lng]);
+    routeLine = L.polyline(latlngs, {
+      color: "#1c6e8c",
+      weight: 3,
+      opacity: 0.7,
+    }).addTo(map);
+
+    for (let i = 0; i < latlngs.length - 1; i += 1) {
+      const start = latlngs[i];
+      const end = latlngs[i + 1];
+      const mid = [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2];
+      const angle = bearing(start[0], start[1], end[0], end[1]) - 90;
+      const arrow = L.marker(mid, {
+        icon: L.divIcon({
+          className: "arrow-icon",
+          html: `<div style="transform: rotate(${angle}deg);">➤</div>`,
+          iconSize: [16, 16],
+          iconAnchor: [8, 8],
+        }),
+        interactive: false,
+      }).addTo(map);
+      arrowMarkers.push(arrow);
+    }
+  }
+
+  if (map) {
+    map.invalidateSize();
+    if (visibleItems.length) {
+      const visibleBounds = visibleItems.map((item) => [item.lat, item.lng]);
+      map.fitBounds(visibleBounds, { padding: [30, 30] });
+    }
+  }
 }
 
 function bearing(lat1, lng1, lat2, lng2) {
