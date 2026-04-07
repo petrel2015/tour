@@ -1,220 +1,231 @@
 {
-  "title": "2026 年 4 月中旬 · 加拿大东部",
+  "title": "2026 年 4 月中下旬 · 加拿大东部 4 人精华自驾之旅",
   "range": {
-    "start": "2026-04-12",
-    "end": "2026-04-17"
+    "start": "2026-04-16",
+    "end": "2026-04-23"
   },
   "days": [
-    {
-      "date": "2026-04-12",
-      "city": "多伦多",
-      "items": [
-        {
-          "id": "2026-04-12-01",
-          "time": "08:40",
-          "place": "多伦多皮尔逊国际机场 (YYZ)",
-          "detailType": "旅途",
-          "detail": "- 抵达后取行李与交通卡\n- 关注机场到市中心 UP Express 的班次\n- 初见多伦多天际线",
-          "lat": 43.6777,
-          "lng": -79.6248,
-          "mode": "walk"
-        },
-        {
-          "id": "2026-04-12-02",
-          "time": "11:30",
-          "place": "圣劳伦斯市场",
-          "detailType": "吃的",
-          "detail": "- 经典 Bacon Peameal 三明治\n- 体验老市场的市井气\n- 观察多伦多移民文化的融合",
-          "lat": 43.6487,
-          "lng": -79.3716,
-          "mode": "walk"
-        },
-        {
-          "id": "2026-04-12-03",
-          "time": "15:00",
-          "place": "加拿大国家电视塔 (CN Tower)",
-          "detailType": "自然景观",
-          "detail": "- 俯瞰安大略湖与城市网格\n- 了解多伦多作为港口城市的地理优势\n- 若天气允许体验玻璃地板",
-          "lat": 43.6426,
-          "lng": -79.3871,
-          "mode": "walk"
-        }
-      ]
-    },
-    {
-      "date": "2026-04-13",
-      "city": "尼亚加拉瀑布 (往返多伦多)",
-      "items": [
-        {
-          "id": "2026-04-13-01",
-          "time": "08:00",
-          "place": "多伦多市区 → 尼亚加拉瀑布",
-          "detailType": "旅途",
-          "detail": "- 选择自驾或 GO Transit\n- 沿 QEW 途经葡萄酒产区\n- 留意早春湖岸雾气",
-          "lat": 43.0896,
-          "lng": -79.0849,
-          "mode": "drive",
-          "route": {
-            "from": "Toronto",
-            "to": "Niagara Falls",
-            "duration": "1.5-2h"
-          }
-        },
-        {
-          "id": "2026-04-13-02",
-          "time": "10:30",
-          "place": "马蹄瀑布观景区",
-          "detailType": "自然景观",
-          "detail": "- 了解尼亚加拉断崖的地质成因\n- 观察水雾形成的微气候\n- 若开放可考虑乘坐 Hornblower",
-          "lat": 43.0799,
-          "lng": -79.0747,
-          "mode": "walk"
-        },
-        {
-          "id": "2026-04-13-03",
-          "time": "18:00",
-          "place": "返回多伦多市区",
-          "detailType": "旅途",
-          "detail": "- 日落时分回城\n- 备好简单晚餐\n- 留出休息时间",
-          "lat": 43.6532,
-          "lng": -79.3832,
-          "mode": "drive",
-          "route": {
-            "from": "Niagara Falls",
-            "to": "Toronto",
-            "duration": "1.5-2h"
-          }
-        }
-      ]
-    },
-    {
-      "date": "2026-04-14",
-      "city": "多伦多 → 蒙特利尔",
-      "items": [
-        {
-          "id": "2026-04-14-01",
-          "time": "09:00",
-          "place": "多伦多联合车站 (Union Station)",
-          "detailType": "文化",
-          "detail": "- 了解加拿大铁路史\n- 选择飞行或铁路转场\n- 记录建筑风格细节",
-          "lat": 43.6456,
-          "lng": -79.3806,
-          "mode": "walk"
-        },
-        {
-          "id": "2026-04-14-02",
-          "time": "12:20",
-          "place": "多伦多 (YYZ) → 蒙特利尔 (YUL)",
-          "detailType": "旅途",
-          "detail": "- 航班为示例，可替换真实航班\n- 机场转换记得预留时间\n- 留意航程约 1h15m",
-          "lat": 45.4706,
-          "lng": -73.7408,
-          "mode": "flight",
-          "flightNo": "AC401",
-          "route": {
-            "from": "YYZ",
-            "to": "YUL",
-            "duration": "1h15m"
-          }
-        },
-        {
-          "id": "2026-04-14-03",
-          "time": "16:30",
-          "place": "老港 (Old Port of Montreal)",
-          "detailType": "风土人情",
-          "detail": "- 漫步圣劳伦斯河畔\n- 观察双语城市的街头标识\n- 选择一家法式咖啡馆",
-          "lat": 45.5075,
-          "lng": -73.5536,
-          "mode": "walk"
-        }
-      ]
-    },
-    {
-      "date": "2026-04-15",
-      "city": "蒙特利尔",
-      "items": [
-        {
-          "id": "2026-04-15-01",
-          "time": "09:30",
-          "place": "圣母大教堂 (Notre-Dame Basilica)",
-          "detailType": "文化",
-          "detail": "- 了解新法兰西时期的宗教历史\n- 关注彩绘玻璃与木雕细节\n- 记得查看开放时间",
-          "lat": 45.5045,
-          "lng": -73.5560,
-          "mode": "walk"
-        },
-        {
-          "id": "2026-04-15-02",
-          "time": "13:00",
-          "place": "蒙特利尔地下城 (RESO) 入口区",
-          "detailType": "地理",
-          "detail": "- 了解城市冬季生存体系\n- 观察地上与地下的功能分布\n- 体验室内步行网络",
-          "lat": 45.5017,
-          "lng": -73.5719,
-          "mode": "walk"
-        },
-        {
-          "id": "2026-04-15-03",
-          "time": "18:30",
-          "place": "圣丹尼斯街 (Rue Saint-Denis)",
-          "detailType": "吃的",
-          "detail": "- 体验法语区餐厅氛围\n- 推荐尝试 poutine\n- 记录不同口音与街区风格",
-          "lat": 45.5160,
-          "lng": -73.5636,
-          "mode": "walk"
-        }
-      ]
-    },
     {
       "date": "2026-04-16",
       "city": "蒙特利尔",
       "items": [
         {
           "id": "2026-04-16-01",
-          "time": "10:00",
-          "place": "皇家山公园 (Mount Royal Park)",
-          "detailType": "自然景观",
-          "detail": "- 远眺圣劳伦斯河与城市全景\n- 观察春季融雪后的植被变化\n- 了解城市绿带规划",
-          "lat": 45.5049,
-          "lng": -73.5878,
-          "mode": "walk"
+          "time": "10:40",
+          "place": "蒙特利尔特鲁多国际机场 (YUL)",
+          "detailType": "旅途",
+          "detail": "- 办理入境手续并提取行李\n- 机场柜台办理 4 人 SUV 租车手续\n- 开启法语区初体验",
+          "lat": 45.4706,
+          "lng": -73.7408,
+          "mode": "drive"
         },
         {
           "id": "2026-04-16-02",
-          "time": "14:30",
-          "place": "蒙特利尔美术馆",
-          "detailType": "文化",
-          "detail": "- 重点关注加拿大现代艺术\n- 观察法语文化语境的策展方式\n- 若时间充裕，去 museum cafe",
-          "lat": 45.4987,
-          "lng": -73.5791,
+          "time": "15:00",
+          "place": "蒙特利尔老城区 (Vieux-Montréal)",
+          "detailType": "风土人情",
+          "detail": "- 漫步鹅卵石街道，感受 17 世纪建筑风格\n- 参观圣母大教堂 (Notre-Dame Basilica)\n- 傍晚观看 AURA 灯光秀",
+          "lat": 45.5045,
+          "lng": -73.5560,
           "mode": "walk"
         }
       ]
     },
     {
       "date": "2026-04-17",
-      "city": "蒙特利尔 → 返程",
+      "city": "蒙特利尔",
       "items": [
         {
           "id": "2026-04-17-01",
-          "time": "09:00",
-          "place": "让-塔隆市场 (Jean-Talon Market)",
-          "detailType": "风土人情",
-          "detail": "- 体验魁北克的本地食材\n- 观察法语区的日常生活\n- 采购适合带走的小食",
-          "lat": 45.5352,
-          "lng": -73.6152,
+          "time": "10:00",
+          "place": "皇家山公园 (Mount Royal Park)",
+          "detailType": "自然景观",
+          "detail": "- 登上观景台俯瞰蒙特利尔全城及圣劳伦斯河\n- 4 月底可观察早春植被复苏\n- 4 人漫步山间小径，呼吸新鲜空气",
+          "lat": 45.5049,
+          "lng": -73.5878,
           "mode": "walk"
         },
         {
           "id": "2026-04-17-02",
-          "time": "14:00",
-          "place": "蒙特利尔特鲁多国际机场 (YUL)",
+          "time": "14:30",
+          "place": "Plateau Mont-Royal 街区",
+          "detailType": "文化",
+          "detail": "- 欣赏彩色阶梯住宅与街头壁画\n- 体验地道法式咖啡馆文化\n- 购买魁北克特色手办",
+          "lat": 45.5235,
+          "lng": -73.5815,
+          "mode": "walk"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-18",
+      "city": "蒙特利尔 → 多伦多",
+      "items": [
+        {
+          "id": "2026-04-18-01",
+          "time": "08:30",
+          "place": "401 高速公路 (向西行驶)",
           "detailType": "旅途",
-          "detail": "- 办理返程航班\n- 预留安检时间\n- 整理行程照片",
-          "lat": 45.4706,
-          "lng": -73.7408,
+          "detail": "- 开启跨省长途自驾 (约 540km)\n- 4 人轮换驾驶，沿途欣赏圣劳伦斯河谷风光",
+          "lat": 45.0396,
+          "lng": -74.7262,
+          "mode": "drive",
+          "route": {
+            "from": "Montreal",
+            "to": "Kingston",
+            "duration": "3h"
+          }
+        },
+        {
+          "id": "2026-04-18-02",
+          "time": "12:00",
+          "place": "千岛湖 (1000 Islands / Kingston)",
+          "detailType": "自然景观",
+          "detail": "- 在金斯顿享用午餐\n- 乘船游览圣劳伦斯河上的古堡与群岛\n- 留意 4 月湖面风大，备好外套",
+          "lat": 44.2298,
+          "lng": -76.4810,
+          "mode": "walk"
+        },
+        {
+          "id": "2026-04-18-03",
+          "time": "18:00",
+          "place": "多伦多古酿酒厂区 (Distillery District)",
+          "detailType": "文化",
+          "detail": "- 抵达多伦多，入住维多利亚时代工业建筑群周边\n- 体验步行街区的餐厅与艺术工作室",
+          "lat": 43.6503,
+          "lng": -79.3596,
+          "mode": "walk"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "city": "多伦多",
+      "items": [
+        {
+          "id": "2026-04-19-01",
+          "time": "10:00",
+          "place": "卡萨罗马城堡 (Casa Loma)",
+          "detailType": "文化",
+          "detail": "- 参观加拿大著名的爱德华时代城堡\n- 探索秘密通道与精致花园\n- 了解多伦多早期富豪历史",
+          "lat": 43.6780,
+          "lng": -79.4094,
+          "mode": "walk"
+        },
+        {
+          "id": "2026-04-19-02",
+          "time": "15:00",
+          "place": "安大略皇家博物馆 (ROM)",
+          "detailType": "文化",
+          "detail": "- 欣赏建筑师丹尼尔·里伯斯金设计的“水晶”外观\n- 重点参观自然历史与世界文化展厅",
+          "lat": 43.6677,
+          "lng": -79.3948,
+          "mode": "walk"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "city": "多伦多 → 尼亚加拉",
+      "items": [
+        {
+          "id": "2026-04-20-01",
+          "time": "09:00",
+          "place": "407 ETR 收费高速公路",
+          "detailType": "旅途",
+          "detail": "- 避开 401 拥堵，快速穿过多伦多区域\n- 4 人拼车通过 QEW 高速前往瀑布",
+          "lat": 43.5183,
+          "lng": -79.6763,
+          "mode": "drive",
+          "route": {
+            "from": "Toronto",
+            "to": "Niagara Falls",
+            "duration": "1.5h"
+          }
+        },
+        {
+          "id": "2026-04-20-02",
+          "time": "11:30",
+          "place": "马蹄瀑布 (Horshoe Falls)",
+          "detailType": "自然景观",
+          "detail": "- 近距离感受世界级瀑布的震撼水力\n- 体验 Journey Behind the Falls (瀑布后方之旅)\n- 穿着免费发放的雨衣，防止被水雾打湿",
+          "lat": 43.0799,
+          "lng": -79.0747,
+          "mode": "walk"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "city": "尼亚加拉区域",
+      "items": [
+        {
+          "id": "2026-04-21-01",
+          "time": "10:30",
+          "place": "尼亚加拉湖滨小镇 (Niagara-on-the-Lake)",
+          "detailType": "风土人情",
+          "detail": "- 漫步于保留完整的 19 世纪小镇街道\n- 参观当地著名的冰酒酒庄 (如 Inniskillin 或 Peller Estates)\n- 4 人品鉴当地获奖冰酒",
+          "lat": 43.2550,
+          "lng": -79.0773,
+          "mode": "drive"
+        },
+        {
+          "id": "2026-04-21-02",
+          "time": "15:00",
+          "place": "尼亚加拉河景观大道 (Niagara Parkway)",
+          "detailType": "自然景观",
+          "detail": "- 沿着丘吉尔评价为“世上最美午后驱动”的路线驾驶\n- 参观花钟 (Floral Clock) 与漩涡缆车 (Whirlpool Aero Car)",
+          "lat": 43.1415,
+          "lng": -79.0558,
+          "mode": "drive"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "city": "尼亚加拉 → 多伦多",
+      "items": [
+        {
+          "id": "2026-04-22-01",
+          "time": "10:00",
+          "place": "Yorkdale 购物中心",
+          "detailType": "吃的",
+          "detail": "- 在回机场前进行最后的购物补给\n- 汇集各大奢侈品牌与加拿大本土品牌\n- 在美食广场享用快捷午餐",
+          "lat": 43.7252,
+          "lng": -79.4522,
+          "mode": "drive"
+        },
+        {
+          "id": "2026-04-22-02",
+          "time": "19:00",
+          "place": "多伦多皮尔逊国际机场 (YYZ) 附近",
+          "detailType": "旅途",
+          "detail": "- 在机场附近加油站加满油\n- 办理还车手续，入住机场酒店以便次日早班机",
+          "lat": 43.6777,
+          "lng": -79.6248,
+          "mode": "drive"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "city": "多伦多 → 北京",
+      "items": [
+        {
+          "id": "2026-04-23-01",
+          "time": "06:30",
+          "place": "多伦多皮尔逊国际机场 (YYZ)",
+          "detailType": "旅途",
+          "detail": "- 搭乘早班机返程，经美国转机\n- 整理行程中拍摄的 4 人合影与美景视频",
+          "lat": 43.6777,
+          "lng": -79.6248,
           "mode": "flight",
-          "flightNo": "AC472"
+          "flightNo": "UA565",
+          "route": {
+            "from": "YYZ",
+            "to": "PEK",
+            "duration": "21h"
+          }
         }
       ]
     }
