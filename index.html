@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>加拿大东部游程 · 2026年4月中旬</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">行程总览</p>
+            <h1>2026 年 4 月中旬 · 加拿大东部</h1>
+            <p class="sub">多伦多 ↔ 尼亚加拉 ↔ 蒙特利尔 · 列表与地图联动展示</p>
+          </div>
+          <div class="hero-actions">
+            <div class="legend">
+              <span class="dot flight"></span>飞行
+              <span class="dot drive"></span>自驾/城际
+              <span class="dot walk"></span>步行/市内
+            </div>
+            <button class="reset-btn" id="resetView">恢复全局显示</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="list-panel">
+          <div class="list-header">
+            <h2>行程列表</h2>
+            <div class="summary" id="summary"></div>
+          </div>
+          <div id="timeline" class="timeline"></div>
+        </section>
+
+        <section class="map-panel">
+          <div id="map" class="map"></div>
+          <div class="map-footer" id="mapFooter">点击列表或地图点位查看详情</div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="app.js"></script>
+  </body>
+</html>
