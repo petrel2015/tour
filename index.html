@@ -9,38 +9,40 @@
   </head>
   <body>
     <div class="app">
-      <header class="hero">
-        <div class="hero-inner">
-          <div>
-            <p class="eyebrow">行程总览</p>
-            <h1 id="pageTitle">行程标题</h1>
-            <p class="sub" id="pageSub">日期范围</p>
-          </div>
-          <div class="hero-actions">
-            <div class="legend">
-              <span class="dot flight"></span>飞行
-              <span class="dot drive"></span>自驾/城际
-              <span class="dot walk"></span>步行/市内
-            </div>
-            <button class="reset-btn" id="resetView">恢复全局显示</button>
-          </div>
-        </div>
-      </header>
-
       <main class="main">
-        <section class="list-panel">
+        <section class="list-panel" id="listPanel">
           <div class="list-header">
-            <h2>行程列表</h2>
-            <div class="summary" id="summary"></div>
+            <div class="list-title">
+              <div class="list-top">
+                <h1 id="pageTitle">行程标题</h1>
+                <button class="minimize-btn" id="minimizeList" aria-label="最小化行程列表">－</button>
+              </div>
+              <p class="sub" id="pageSub">日期范围</p>
+              <div class="summary" id="summary"></div>
+            </div>
+            <div class="list-actions">
+            </div>
           </div>
           <div id="timeline" class="timeline"></div>
         </section>
 
         <section class="map-panel">
           <div id="map" class="map"></div>
-          <div class="map-footer" id="mapFooter">点击列表或地图点位查看详情</div>
+          <div class="map-legend">
+            <span><span class="dot flight"></span>飞行</span>
+            <span><span class="dot drive"></span>自驾/城际</span>
+            <span><span class="dot walk"></span>步行/市内</span>
+          </div>
         </section>
       </main>
+
+      <button class="list-toggle" id="listToggle" aria-expanded="true" aria-controls="listPanel" aria-label="切换行程列表">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="4" y="5" width="16" height="2" rx="1"></rect>
+          <rect x="4" y="11" width="16" height="2" rx="1"></rect>
+          <rect x="4" y="17" width="16" height="2" rx="1"></rect>
+        </svg>
+      </button>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

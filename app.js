@@ -1,6 +1,5 @@
 const timelineEl = document.getElementById("timeline");
 const summaryEl = document.getElementById("summary");
-const mapFooterEl = document.getElementById("mapFooter");
 const pageTitleEl = document.getElementById("pageTitle");
 const pageSubEl = document.getElementById("pageSub");
 
@@ -25,24 +24,12 @@ fetch("data/itinerary.json")
     renderSummary(data);
     renderTimeline(data.days);
     initMap(data.days);
-    syncMainHeight();
   })
   .catch(() => {
     timelineEl.innerHTML = "<p>无法加载行程数据。</p>";
   });
 
-window.addEventListener("resize", syncMainHeight);
-
-function syncMainHeight() {
-  const mainEl = document.querySelector(".main");
-  const headerEl = document.querySelector(".hero");
-  if (!mainEl || !headerEl) return;
-  const headerRect = headerEl.getBoundingClientRect();
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const verticalPadding = 24;
-  const available = Math.max(viewportHeight - headerRect.height - verticalPadding, 320);
-  mainEl.style.height = `${available}px`;
-}
+initListToggle();
 
 function renderSummary(data) {
   const totalItems = data.days.reduce((sum, day) => sum + day.items.length, 0);
@@ -133,7 +120,8 @@ function renderTimeline(days) {
 }
 
 function initMap(days) {
-  map = L.map("map", { scrollWheelZoom: true });
+  map = L.map("map", { scrollWheelZoom: true, zoomControl: false });
+  L.control.zoom({ position: "topright" }).addTo(map);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap",
@@ -187,17 +175,6 @@ function initMap(days) {
   rebuildRoute();
 }
 
-const resetBtn = document.getElementById("resetView");
-if (resetBtn) {
-  resetBtn.addEventListener("click", () => {
-    listItems.forEach((el) => el.classList.remove("active"));
-    if (map && globalBounds.length) {
-      map.fitBounds(globalBounds, { padding: [30, 30] });
-    }
-    mapFooterEl.textContent = "点击列表或地图点位查看详情";
-    rebuildRoute();
-  });
-}
 
 function focusItem(itemId) {
   const marker = markers.get(itemId);
@@ -211,7 +188,6 @@ function focusItem(itemId) {
   map.setView(marker.getLatLng(), Math.max(map.getZoom(), 12), { animate: true });
   marker.openPopup();
 
-  mapFooterEl.textContent = listEl.querySelector(".item-place").textContent;
 }
 
 function formatTag(item) {
@@ -352,6 +328,41 @@ function rebuildRoute() {
       const visibleBounds = visibleItems.map((item) => [item.lat, item.lng]);
       map.fitBounds(visibleBounds, { padding: [30, 30] });
     }
+  }
+}
+
+function initListToggle() {
+  const toggleBtn = document.getElementById("listToggle");
+  const listPanel = document.getElementById("listPanel");
+  const minimizeBtn = document.getElementById("minimizeList");
+  if (!toggleBtn || !listPanel) return;
+
+  const openList = () => {
+    listPanel.classList.remove("hidden");
+    toggleBtn.classList.add("hidden");
+    toggleBtn.setAttribute("aria-expanded", "true");
+    if (map) map.invalidateSize();
+  };
+
+  const closeList = () => {
+    listPanel.classList.add("hidden");
+    toggleBtn.classList.remove("hidden");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    if (map) map.invalidateSize();
+  };
+
+  if (listPanel.classList.contains("hidden")) {
+    toggleBtn.classList.remove("hidden");
+  } else {
+    toggleBtn.classList.add("hidden");
+  }
+
+  toggleBtn.addEventListener("click", openList);
+  if (minimizeBtn) {
+    minimizeBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      closeList();
+    });
   }
 }
 
